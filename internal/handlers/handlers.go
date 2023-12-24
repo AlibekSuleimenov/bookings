@@ -6,9 +6,9 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/AlibekSuleimenov/bookings/pkg/config"
-	"github.com/AlibekSuleimenov/bookings/pkg/models"
-	"github.com/AlibekSuleimenov/bookings/pkg/render"
+	"github.com/AlibekSuleimenov/bookings/internal/config"
+	"github.com/AlibekSuleimenov/bookings/internal/models"
+	"github.com/AlibekSuleimenov/bookings/internal/render"
 )
 
 // Repository is the repository type
