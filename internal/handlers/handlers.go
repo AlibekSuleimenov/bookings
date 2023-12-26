@@ -108,12 +108,12 @@ func (m *Repository) Majors(w http.ResponseWriter, r *http.Request) {
 }
 
 // Availiability renders the search availability page
-func (m *Repository) Availiability(w http.ResponseWriter, r *http.Request) {
+func (m *Repository) Availability(w http.ResponseWriter, r *http.Request) {
 	render.RenderTemplate(w, r, "search-availability.page.tmpl", &models.TemplateData{})
 }
 
 // PostAvailiability renders the search availability page
-func (m *Repository) PostAvailiability(w http.ResponseWriter, r *http.Request) {
+func (m *Repository) PostAvailability(w http.ResponseWriter, r *http.Request) {
 	start := r.Form.Get("start")
 	end := r.Form.Get("end")
 	w.Write([]byte(fmt.Sprintf("Start date is %s and end date is %s", start, end)))
@@ -125,7 +125,7 @@ type jsonResponse struct {
 }
 
 // AvailiabilityJSON handles request for availability and sends JSON response
-func (m *Repository) AvailiabilityJSON(w http.ResponseWriter, r *http.Request) {
+func (m *Repository) AvailabilityJSON(w http.ResponseWriter, r *http.Request) {
 	resp := jsonResponse{
 		OK:      true,
 		Message: "available",

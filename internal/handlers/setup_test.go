@@ -53,7 +53,7 @@ func getRoutes() http.Handler {
 
 	mux := chi.NewRouter()
 
-	mux.Use(NoSurf)
+	// mux.Use(NoSurf)
 	mux.Use(SessionLoad)
 
 	mux.Get("/", Repo.Home)
@@ -61,9 +61,9 @@ func getRoutes() http.Handler {
 	mux.Get("/generals-quarters", Repo.Generals)
 	mux.Get("/majors-suite", Repo.Majors)
 
-	mux.Get("/search-availability", Repo.Availiability)
-	mux.Post("/search-availability", Repo.PostAvailiability)
-	mux.Post("/search-availability-json", Repo.AvailiabilityJSON)
+	mux.Get("/search-availability", Repo.Availability)
+	mux.Post("/search-availability", Repo.PostAvailability)
+	mux.Post("/search-availability-json", Repo.AvailabilityJSON)
 
 	mux.Get("/contact", Repo.Contact)
 
