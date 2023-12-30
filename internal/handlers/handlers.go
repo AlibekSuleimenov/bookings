@@ -6,24 +6,29 @@ import (
 	"net/http"
 
 	"github.com/AlibekSuleimenov/bookings/internal/config"
+	"github.com/AlibekSuleimenov/bookings/internal/driver"
 	"github.com/AlibekSuleimenov/bookings/internal/forms"
 	"github.com/AlibekSuleimenov/bookings/internal/helpers"
 	"github.com/AlibekSuleimenov/bookings/internal/models"
 	"github.com/AlibekSuleimenov/bookings/internal/render"
+	"github.com/AlibekSuleimenov/bookings/internal/repository"
+	"github.com/AlibekSuleimenov/bookings/internal/repository/dbrepo"
 )
 
 // Repository is the repository type
 type Repository struct {
 	App *config.AppConfig
+	DB  repository.DatabaseRepo
 }
 
 // Repo the repository used by the handlers
 var Repo *Repository
 
 // NewRepo creates the new repositry
-func NewRepo(a *config.AppConfig) *Repository {
+func NewRepo(a *config.AppConfig, db *driver.DB) *Repository {
 	return &Repository{
 		App: a,
+		DB:  dbrepo.NewPostgresRepo(db.SQL, a),
 	}
 }
 
