@@ -68,13 +68,19 @@ func (m *postgresDBRepo) SearchAvailabilityByDatesByRoomID(start, end time.Time,
 	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
 	defer cancel()
 
-	stmt := `select count(id)
-	from room_restrictions
-	where room_id = $1 and $2 < end_date and $3 > start_date`
+	stmt := `
+	select
+			count(id)
+		from
+			room_restrictions
+		where
+			room_id = $1
+			and $2 < end_date and $3 > start_date;
+	`
 
 	var numRows int
 
-	row := m.DB.QueryRowContext(ctx, stmt, start, end)
+	row := m.DB.QueryRowContext(ctx, stmt, roomID, start, end)
 	err := row.Scan(&numRows)
 	if err != nil {
 		return false, err
