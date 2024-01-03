@@ -1,32 +1,37 @@
 {{define "admin"}}
-    <!DOCTYPE html>
-    <html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 
-    <head>
-        <!-- Required meta tags -->
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <title>Administration</title>
-        <!-- plugins:css -->
-        <link rel="stylesheet" href="/static/admin/vendors/ti-icons/css/themify-icons.css">
-        <link rel="stylesheet" href="/static/admin/vendors/base/vendor.bundle.base.css">
-        <!-- endinject -->
-        <!-- plugin css for this page -->
-        <!-- End plugin css for this page -->
-        <!-- inject:css -->
-        <link rel="stylesheet" href="/static/admin/css/style.css">
-        <!-- endinject -->
-        <link rel="shortcut icon" href="/static/admin/images/favicon.png"/>
-        <style>
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Administration</title>
+    <!-- plugins:css -->
+    <link rel="stylesheet" href="/static/admin/vendors/ti-icons/css/themify-icons.css">
+    <link rel="stylesheet" href="/static/admin/vendors/base/vendor.bundle.base.css">
+    <!-- endinject -->
+    <!-- plugin css for this page -->
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+    <link rel="stylesheet" href="/static/admin/css/style.css">
+    <!-- endinject -->
+    <link rel="shortcut icon" href="/static/admin/images/favicon.png" />
+    <style>
         .content-wrapper {
-        background: white;
+            background: white;
         }
-        </style>
-        {{block "css" . }}
 
-        {{end}}
-    </head>
-    <body>
+        label {
+            font-weight: bold;
+        }
+    </style>
+    {{block "css" . }}
+
+    {{end}}
+</head>
+
+<body>
     <div class="container-scroller">
         <!-- partial:partials/_navbar.html -->
         <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
@@ -63,7 +68,7 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false"
-                           aria-controls="ui-basic">
+                            aria-controls="ui-basic">
                             <i class="ti-palette menu-icon"></i>
                             <span class="menu-title">Reservations</span>
                             <i class="menu-arrow"></i>
@@ -142,9 +147,9 @@
     {{block "js" . }}
 
     {{end}}
-    </body>
+</body>
 
-    </html>
+</html>
 
 
 {{end}}

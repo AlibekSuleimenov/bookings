@@ -485,7 +485,7 @@ func (m *Repository) AdminDashboard(w http.ResponseWriter, r *http.Request) {
 	render.Template(w, r, "admin-dashboard.page.tmpl", &models.TemplateData{})
 }
 
-// AdminAllReservations shows all reservations in admin dashboard
+// AdminAllReservations shows all reservations in the admin dashboard
 func (m *Repository) AdminAllReservations(w http.ResponseWriter, r *http.Request) {
 	reservations, err := m.DB.AllReservations()
 	if err != nil {
@@ -499,7 +499,7 @@ func (m *Repository) AdminAllReservations(w http.ResponseWriter, r *http.Request
 	})
 }
 
-// AdminNewReservations shows all new reservations in admin dashboard
+// AdminNewReservations shows all new reservations in the admin dashboard
 func (m *Repository) AdminNewReservations(w http.ResponseWriter, r *http.Request) {
 	reservations, err := m.DB.AllNewReservations()
 	if err != nil {
@@ -513,6 +513,35 @@ func (m *Repository) AdminNewReservations(w http.ResponseWriter, r *http.Request
 	})
 }
 
+// AdminShowReservation shows the reservation in the admin dashboard
+func (m *Repository) AdminShowReservation(w http.ResponseWriter, r *http.Request) {
+	exploded := strings.Split(r.RequestURI, "/")
+	id, err := strconv.Atoi(exploded[4])
+	if err != nil {
+		helpers.ServerError(w, err)
+		return
+	}
+	src := exploded[3]
+
+	stringMap := make(map[string]string)
+	stringMap["src"] = src
+	// get reservation from the database
+	res, err := m.DB.GetReservationByID(id)
+	if err != nil {
+		helpers.ServerError(w, err)
+		return
+	}
+	data := make(map[string]interface{})
+	data["reservation"] = res
+
+	render.Template(w, r, "admin-reservations-show.page.tmpl", &models.TemplateData{
+		StringMap: stringMap,
+		Data:      data,
+		Form:      forms.New(nil),
+	})
+}
+
+// AdminReservationsCalendar displays the reservation calendar
 func (m *Repository) AdminReservationsCalendar(w http.ResponseWriter, r *http.Request) {
 	render.Template(w, r, "admin-reservations-calendar.page.tmpl", &models.TemplateData{})
 }
