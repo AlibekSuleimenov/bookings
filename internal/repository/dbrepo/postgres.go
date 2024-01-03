@@ -189,14 +189,16 @@ func (m *postgresDBRepo) UpdateUser(u models.User) error {
 	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
 	defer cancel()
 
-	stmt := `update users set first_name = $1, last_name = $2, email = $3, access_level = $4, updated_at = $5`
+	stmt := `update users set first_name = $1, last_name = $2, email = $3, access_level = $4, updated_at = $5 where id = $6`
 
 	_, err := m.DB.ExecContext(ctx, stmt,
 		u.FirstName,
 		u.LastName,
 		u.Email,
 		u.AccessLevel,
-		time.Now())
+		time.Now(),
+		u.ID,
+	)
 
 	if err != nil {
 		return err
@@ -369,14 +371,16 @@ func (m *postgresDBRepo) UpdateReservation(u models.Reservation) error {
 	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
 	defer cancel()
 
-	stmt := `update reservations set first_name = $1, last_name = $2, email = $3, phone = $4, updated_at = $5`
+	stmt := `update reservations set first_name = $1, last_name = $2, email = $3, phone = $4, updated_at = $5 where id = $6`
 
 	_, err := m.DB.ExecContext(ctx, stmt,
 		u.FirstName,
 		u.LastName,
 		u.Email,
 		u.Phone,
-		time.Now())
+		time.Now(),
+		u.ID,
+	)
 
 	if err != nil {
 		return err
